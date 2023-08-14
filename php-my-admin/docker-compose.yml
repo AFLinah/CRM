@@ -1,0 +1,35 @@
+version: '3.5'
+
+services:
+  mysql:
+    container_name: crm-mysql-container
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: crm_database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - crm-data:/var/lib/mysql
+    ports:
+      - "4306:3306"
+    restart: always
+
+  phpmyadmin:
+    container_name: crm-phpmyadmin-container
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "6908:80"
+    restart: always
+    depends_on:
+      - mysql
+
+volumes:
+  crm-data:
+    external: false
+

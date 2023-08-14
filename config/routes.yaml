@@ -1,3 +1,172 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+controllers:
+    resource: ../src/Controller/UtilisateurController.php
+    type: annotation
+
+kernel:
+    resource: ../src/Kernel.php
+    type: annotation
+
+# Route par defaut
+app_default:
+    path: /
+    controller: Symfony\Component\HttpFoundation\RedirectResponse
+    defaults:
+        path: /app_login
+        permanent: true
+
+# Route pour l'entite Utilisateur
+app_utilisateur_index:
+    path: /utilisateur 
+    controller: App\Controller\UtilisateurController::index
+
+app_utilisateur_new:
+    path: /utilisateur/new
+    controller: App\Controller\UtilisateurController::new
+
+app_utilisateur_show:
+    path: /utilisateur/{id}
+    controller: App\Controller\UtilisateurController::show
+
+app_utilisateur_edit:
+    path: /utilisateur/{id}/edit
+    controller: App\Controller\UtilisateurController::edit
+
+app_utilisateur_delete:
+    path: /utilisateur/{id}/delete
+    controller: App\Controller\UtilisateurController::delete
+
+
+# Route pour l'entite CLient
+app_client_index:
+    path: /client
+    controller: App\Controller\ClientController::index
+
+app_client_new:
+    path: /client/new
+    controller: App\Controller\ClientController::new
+
+app_client_show:
+    path: /client/{id}
+    controller: App\Controller\ClientController::show
+
+app_client_edit:
+    path: /client/{id}/edit
+    controller: App\Controller\ClientController::edit
+
+app_client_delete:
+    path: /client/{id}/delete
+    controller: App\Controller\ClientController::delete
+
+# Route pour l'entite Produit
+app_produit_index:
+    path: /produit
+    controller: App\Controller\ProduitController::index
+
+app_produit_new:
+    path: /produit/new
+    controller: App\Controller\ProduitController::new
+
+app_produit_show:
+    path: /produit/{id}
+    controller: App\Controller\ProduitController::show
+
+app_produit_edit:
+    path: /produit/{id}/edit
+    controller: App\Controller\ProduitController::edit
+
+app_produit_delete:
+    path: /produit/{id}/delete
+    controller: App\Controller\ProduitController::delete
+
+# Route pour l'entite Cible
+app_cible_index:
+    path: /cible
+    controller: App\Controller\CibleController::index
+
+app_cible_new:
+    path: /cible/new
+    controller: App\Controller\CibleController::new
+
+app_cible_show:
+    path: /cible/{id}
+    controller: App\Controller\CibleController::show
+
+app_cible_edit:
+    path: /cible/{id}/edit
+    controller: App\Controller\CibleController::edit
+
+app_cible_delete:
+    path: /cible/{id}/delete
+    controller: App\Controller\CibleController::delete
+
+# Route pour l'entite Cannaux
+app_cannaux_index:
+    path: /cannaux
+    controller: App\Controller\CannauxController::index
+
+app_cannaux_new:
+    path: /cannaux/new
+    controller: App\Controller\CannauxController::new
+
+app_cannaux_show:
+    path: /cannaux/{id}
+    controller: App\Controller\CannauxController::show
+
+app_cannaux_edit:
+    path: /cannaux/{id}/edit
+    controller: App\Controller\CannauxController::edit
+
+app_cannaux_delete:
+    path: /cannaux/{id}/delete
+    controller: App\Controller\CannauxController::delete
+
+# Route pour l'entite Service 
+app_service_index:
+    path: /service
+    controller: App\Controller\ServiceController::index
+
+app_service_new:
+    path: /service/new
+    controller: App\Controller\ServiceController::new
+
+app_service_show:
+    path: /service/{id}
+    controller: App\Controller\ServiceController::show
+
+app_service_edit:
+    path: /service/{id}/edit
+    controller: App\Controller\ServiceController::edit
+
+app_service_delete:
+    path: /service/{id}/delete
+    controller: App\Controller\ServiceController::delete
+
+# Route pour l'entite Achat
+app_achat_index:
+    path: /achat
+    controller: App\Controller\AchatController::index
+
+app_achat_new:
+    path: /achat/new
+    controller: App\Controller\AchatController::new
+
+app_achat_show:
+    path: /achat/{id}
+    controller: App\Controller\AchatController::show
+
+app_achat_edit:
+    path: /achat/{id}/edit
+    controller: App\Controller\AchatController::edit
+
+app_achat_delete:
+    path: /achat/{id}/delete
+    controller: App\Controller\AchatController::delete
+
+# Route pour le Dashboard
+app_dashboard:
+    path: /dashboard
+    controller: App\Controller\DashboardController::index

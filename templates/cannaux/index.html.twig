@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cannaux{% endblock %}
+
+{% block body %}
+    <h1>Liste des cannaux</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ref_canal</th>
+                <th>Nom_canal</th>
+                <th>Type</th>
+                {# <th>Audience_cible</th> #}
+                <th>Cible</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cannaux in cannauxes %}
+            <tr>
+                <td>{{ cannaux.id }}</td>
+                <td>{{ cannaux.RefCanal }}</td>
+                <td>{{ cannaux.NomCanal }}</td>
+                <td>{{ cannaux.Type }}</td>
+                {# <td>{{ cannaux.AudienceCible }}</td> #}
+                <td>
+                    {% for cible in cannaux.cible %}
+                        {{ cible.Nom_cible }}
+                        <br>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('app_cannaux_show', {'id': cannaux.id}) }}" class="btn btn-success"><i class="fa-solid fa-eye"></i> show</a>
+                    <a href="{{ path('app_cannaux_edit', {'id': cannaux.id}) }}" class="btn btn-danger"><i class="fa-solid fa-pen-to-square"></i> edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cannaux_new') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create new</a>
+{% endblock %}

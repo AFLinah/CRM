@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cible{% endblock %}
+
+{% block body %}
+    <h1>Liste des cibles</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ref_cible</th>
+                <th>Nom_cible</th>
+                <th>Localisation</th>
+                {# <th>Interet</th> #}
+                <th>Activite</th>
+                <th>Cannaux</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cible in cibles %}
+            <tr>
+                <td>{{ cible.id }}</td>
+                <td>{{ cible.RefCible }}</td>
+                <td>{{ cible.NomCible }}</td>
+                <td>{{ cible.Localisation }}</td>
+                {# <td>{{ cible.Interet }}</td> #}
+                <td>{{ cible.Activite }}</td>
+                <td>
+                    {% for canal in cible.canal %}
+                        {{ canal.Nom_canal }}
+                        <br>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('app_cible_show', {'id': cible.id}) }}" class="btn btn-success"><i class="fa-solid fa-eye"></i> show</a>
+                    <a href="{{ path('app_cible_edit', {'id': cible.id}) }}" class="btn btn-danger"><i class="fa-solid fa-pen-to-square"></i> edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cible_new') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create new</a>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service{% endblock %}
+
+{% block body %}
+    <h1>Service</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ service.id }}</td>
+            </tr>
+            <tr>
+                <th>Ref_service</th>
+                <td>{{ service.RefService }}</td>
+            </tr>
+            <tr>
+                <th>Nom_service</th>
+                <td>{{ service.NomService }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ service.Description }}</td>
+            </tr>
+            <tr>
+                <th>Tarif_horaire</th>
+                <td>{{ service.TarifHoraire }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ service.Statut }}</td>
+            </tr>
+            <tr>
+                <th>Zone_geographique</th>
+                <td>{{ service.ZoneGeographique }}</td>
+            </tr>
+            {# <tr>
+                <th>Client</th>
+                <td>{{ service.client }}</td>
+            </tr> #}
+            <tr>
+                <th>Cible</th>
+                <td>
+                    {% for cible in service.Cible %}
+                        {{ cible.Nom_cible }}
+                        <br>
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_service_index') }}" class="btn btn-primary">back to list</a>
+
+    <a href="{{ path('app_service_edit', {'id': service.id}) }}" class="btn btn-danger">edit</a>
+
+    {{ include('service/_delete_form.html.twig') }}
+{% endblock %}

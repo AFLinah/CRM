@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+    <div class="mb-3 rounded-5">
+        {{ form_widget(form) }}
+        <button class="btn btn-danger my-2">{{ button_label|default('save') }}</button>
+    </div>
+{{ form_end(form) }}

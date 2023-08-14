@@ -3,7 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22></text></svg>">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+        <link href="{{ asset('assets/css/styles.css')}}" rel="stylesheet" />
+        <script src="{{ asset('assets/js/scripts.js') }}"></script>
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -13,7 +19,147 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
+
     <body>
-        {% block body %}{% endblock %}
+    
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="{{ path('app_dashboard') }}"> CRM Project</a>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <a class="nav-link" href="{{ path('app_dashboard') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Tableau de bord
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Interface</div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseusers" aria-expanded="false" aria-controls="collapseusers">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                            Utilisateur
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseusers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ path('app_utilisateur_index') }}">Liste utilisateur</a>
+                                <a class="nav-link"  href="{{ path('app_utilisateur_new')}}" >Ajouter utilisateur</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseclient" aria-expanded="false" aria-controls="collapseclient">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Clients
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseclient" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ path('app_client_index') }}">Liste client</a>
+                                <a class="nav-link" href="{{ path('app_client_new') }}">Ajouter client</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseproduit" aria-expanded="false" aria-controls="collapseproduit">
+                            <div class="sb-nav-link-icon"><i class="fa-brands fa-product-hunt"></i></div>
+                            Produits
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseproduit" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ path('app_produit_index') }}">Liste produit</a>
+                                <a class="nav-link" href="{{ path('app_client_new') }}">Ajouter produit</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseservice" aria-expanded="false" aria-controls="collapseservice">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-bell-concierge"></i></div>
+                            Service
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseservice" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ path('app_service_index') }}">Liste service</a>
+                                <a class="nav-link" href="{{ path('app_client_new') }}">Ajouter service</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseachat" aria-expanded="false" aria-controls="collapseachat">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                            Achats
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseachat" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ path('app_achat_index') }}">Liste achat</a>
+                                <a class="nav-link" href="{{ path('app_achat_new') }}">Ajouter achat</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsecible" aria-expanded="false" aria-controls="collapsecible">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-users-viewfinder"></i></i></i></div>
+                            Cible
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsecible" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ path('app_cible_index') }}">Liste cible</a>
+                                <a class="nav-link" href="{{ path('app_cible_new') }}">Ajouter cible</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsecanal" aria-expanded="false" aria-controls="collapsecanal">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+                            Cannaux
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsecanal" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ path('app_cannaux_index') }}">Liste cannaux</a>
+                                <a class="nav-link" href="{{ path('app_cannaux_new') }}">Ajouter canal</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">
+                        Connecté en tant que: {{ app.user.username }}
+                    </div>
+                    <a href="{{ path('app_logout') }}">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        Deconnecter
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <div id="layoutSidenav_content">
+            <main class="mt-5">
+                <div class="container-fluid px-4">
+
+                    {% block body %}
+
+                    {% endblock %}
+
+                </div>
+            </main>
+
+            {# <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                        <div>
+                            <a href="#">Politique de confidentialité</a>
+                            &middot;
+                            <a href="#">Termes &amp; conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer> #}
+        </div>
+    </div>
     </body>
 </html>

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Achat{% endblock %}
+
+{% block body %}
+    <h1>Liste des achats</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ref_achat</th>
+                <th>Date_achat</th>
+                <th>Client</th>
+                <th>Produit</th>
+                <th>Statut_payement</th>
+                <th>Statut_livraison</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for achat in achats %}
+            <tr>
+                <td>{{ achat.id }}</td>
+                <td>{{ achat.RefAchat }}</td>
+                <td>{{ achat.DateAchat ? achat.DateAchat|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ achat.Client }}</td>
+                <td>{{ achat.Produit }}</td>
+                <td>{{ achat.StatutPayement }}</td>
+                <td>{{ achat.StatutLivraison }}</td>
+                <td>
+                    <a href="{{ path('app_achat_show', {'id': achat.id}) }}" class="btn btn-success"><i class="fa-solid fa-eye"></i> show</a>
+                    <a href="{{ path('app_achat_edit', {'id': achat.id}) }}" class="btn btn-danger"><i class="fa-solid fa-pen-to-square"></i> edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_achat_new') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create new</a>
+{% endblock %}

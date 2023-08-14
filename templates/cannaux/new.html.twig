@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Cannaux{% endblock %}
+
+{% block body %}
+    <h1>Create new Cannaux</h1>
+
+    {{ include('cannaux/_form.html.twig') }}
+
+    <a href="{{ path('app_cannaux_index') }}" class="btn btn-primary">back to list</a>
+{% endblock %}

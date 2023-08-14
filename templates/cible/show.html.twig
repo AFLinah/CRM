@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cible{% endblock %}
+
+{% block body %}
+    <h1>Cible</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cible.id }}</td>
+            </tr>
+            <tr>
+                <th>Ref_cible</th>
+                <td>{{ cible.RefCible }}</td>
+            </tr>
+            <tr>
+                <th>Nom_cible</th>
+                <td>{{ cible.NomCible }}</td>
+            </tr>
+            <tr>
+                <th>Localisation</th>
+                <td>{{ cible.Localisation }}</td>
+            </tr>
+            {# <tr>
+                <th>Interet</th>
+                <td>{{ cible.Interet }}</td>
+            </tr> #}
+            <tr>
+                <th>Activite</th>
+                <td>{{ cible.Activite }}</td>
+            </tr>
+            <tr>
+                <th>Cannaux</th>
+                <td>
+                    {% for canal in cible.canal %}
+                        {{ canal.Nom_canal }}
+                        <br>
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cible_index') }}" class="btn btn-primary">back to list</a>
+
+    <a href="{{ path('app_cible_edit', {'id': cible.id}) }}" class="btn btn-danger">edit</a>
+
+    {{ include('cible/_delete_form.html.twig') }}
+{% endblock %}
